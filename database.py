@@ -65,6 +65,19 @@ def delete(id: int):
     # Commit command
     con.commit()
 
+# CLI command to stop entry
+@app.command()
+def stop(id: int):
+    # * 3600 to give the time difference in minutes
+    cur.execute(f"UPDATE tasks SET status = 'stopped', stopped_at = ROUND((JULIANDAY('now') - JULIANDAY(started_at)) * 3600) WHERE id = {id}")
+
+    # re-list all entries after deletion
+    cur.execute("SELECT * FROM tasks")
+    results = cur.fetchall()
+    print(tabulate(results, headers=["ID","Message", "Status", "Started at", "Stopped at"], tablefmt="fancy_grid"))
+    # Commit command
+    con.commit()
+
 # Close connection, commented out since was getting error "sqlite3.ProgrammingError: Cannot operate on a closed database."
 # con.close()
 

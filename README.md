@@ -47,3 +47,11 @@ python3 database.py update id 'your updated message'
 ```
 python3 database.py delete id
 ```
+
+## Run database.py to stop entry at id (id needs to be an integer)
+
+Additional info: the stopped at column shows the time difference in minutes
+
+```
+python3 database.py stop id
+```
