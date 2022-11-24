@@ -15,10 +15,17 @@ Note: Sqlite3 is not in the requirement.txt file since it is included in the sta
 python3 -m venv env
 source env/bin/activate
 pip install -r requirements.txt
+python3 database.py --help
 ```
 
 ## Run database.py to create table
 
 ```
-python3 database.py
+python3 database.py createtable
+```
+
+## Run database.py to list all entries
+
+```
+python3 database.py list
 ```

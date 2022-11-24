@@ -32,8 +32,8 @@ def list():
 # Commit command
 con.commit()
 
-# Close connection
-con.close()
+# Close connection, commented out since was getting error "sqlite3.ProgrammingError: Cannot operate on a closed database."
+# con.close()
 
 # Calling app object
 if __name__ == "__main__": 
