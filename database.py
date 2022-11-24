@@ -1,4 +1,11 @@
 import sqlite3
+import typer
+
+# Creating and calling object
+app = typer.Typer()
+
+if __name__ == "__database__": 
+    app()
 
 # Connect to database
 con = sqlite3.connect("timeTracker.db")
