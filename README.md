@@ -33,5 +33,11 @@ python3 database.py list
 ## Run database.py to create new entry
 
 ```
-python3 database.py create your_message
+python3 database.py create 'your message'
+```
+
+## Run database.py to update entry at id (id needs to be an integer)
+
+```
+python3 database.py update id 'your updated message'
 ```

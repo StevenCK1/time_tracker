@@ -37,10 +37,21 @@ def create(message: str):
     # re-list all entries after new entry creation
     cur.execute("SELECT * FROM tasks")
     results = cur.fetchall()
-    print(results, headers=["ID","Message", "Status", "Started at", "Stopped at"], tablefmt="fancy_grid")
+    print(tabulate(results, headers=["ID","Message", "Status", "Started at", "Stopped at"], tablefmt="fancy_grid"))
     # Commit command
     con.commit()
     
+# CLI command to create new entry
+@app.command()
+def update(id: int, message: str ):
+    cur.execute(f"UPDATE tasks SET message = '{message}' WHERE id = {id}")
+
+    # re-list all entries after update
+    cur.execute("SELECT * FROM tasks")
+    results = cur.fetchall()
+    print(tabulate(results, headers=["ID","Message", "Status", "Started at", "Stopped at"], tablefmt="fancy_grid"))
+    # Commit command
+    con.commit()
 
 # Close connection, commented out since was getting error "sqlite3.ProgrammingError: Cannot operate on a closed database."
 # con.close()
