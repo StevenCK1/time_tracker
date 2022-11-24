@@ -68,8 +68,8 @@ def delete(id: int):
 # CLI command to stop entry
 @app.command()
 def stop(id: int):
-    # * 3600 to give the time difference in minutes
-    cur.execute(f"UPDATE tasks SET status = 'stopped', stopped_at = ROUND((JULIANDAY('now') - JULIANDAY(started_at)) * 3600) WHERE id = {id}")
+    # * 1440 to give the time difference in minutes
+    cur.execute(f"UPDATE tasks SET status = 'stopped', stopped_at = ROUND((JULIANDAY('now') - JULIANDAY(started_at)) * 1440) WHERE id = {id}")
 
     # re-list all entries after deletion
     cur.execute("SELECT * FROM tasks")
