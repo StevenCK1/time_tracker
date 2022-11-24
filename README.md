@@ -29,3 +29,9 @@ python3 database.py createtable
 ```
 python3 database.py list
 ```
+
+## Run database.py to create new entry
+
+```
+python3 database.py create your_message
+```
