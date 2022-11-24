@@ -1,5 +1,5 @@
-import sqlite3
 import typer
+import sqlite3
 from tabulate import tabulate
 
 # Creating app object
@@ -36,5 +36,5 @@ con.commit()
 con.close()
 
 # Calling app object
-if __name__ == "__database__": 
+if __name__ == "__main__": 
     app()
