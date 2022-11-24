@@ -41,3 +41,9 @@ python3 database.py create 'your message'
 ```
 python3 database.py update id 'your updated message'
 ```
+
+## Run database.py to delete entry at id (id needs to be an integer)
+
+```
+python3 database.py delete id
+```

@@ -41,12 +41,24 @@ def create(message: str):
     # Commit command
     con.commit()
     
-# CLI command to create new entry
+# CLI command to update entry
 @app.command()
 def update(id: int, message: str ):
     cur.execute(f"UPDATE tasks SET message = '{message}' WHERE id = {id}")
 
     # re-list all entries after update
+    cur.execute("SELECT * FROM tasks")
+    results = cur.fetchall()
+    print(tabulate(results, headers=["ID","Message", "Status", "Started at", "Stopped at"], tablefmt="fancy_grid"))
+    # Commit command
+    con.commit()
+
+# CLI command to delete entry
+@app.command()
+def delete(id: int):
+    cur.execute(f"DELETE from tasks WHERE id = {id}")
+
+    # re-list all entries after deletion
     cur.execute("SELECT * FROM tasks")
     results = cur.fetchall()
     print(tabulate(results, headers=["ID","Message", "Status", "Started at", "Stopped at"], tablefmt="fancy_grid"))
