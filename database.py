@@ -1,20 +1,20 @@
 import sqlite3
 import typer
+from tabulate import tabulate
 
-# Creating and calling object
+# Creating app object
 app = typer.Typer()
-
-if __name__ == "__database__": 
-    app()
-
 # Connect to database
 con = sqlite3.connect("timeTracker.db")
 
 # Create a cursor
 cur = con.cursor()
 
-# Create a table (using six double quote since it give me multi-line view of the code)
-cur.execute("""CREATE TABLE tasks (
+# CLI command to create table
+@app.command()
+def createTable():
+    # Create a table (using six double quote since it give me multi-line view of the code)
+    cur.execute("""CREATE TABLE tasks (
     id INTEGER PRIMARY KEY,
     message TEXT,
     status TEXT,
@@ -22,8 +22,19 @@ cur.execute("""CREATE TABLE tasks (
     stopped_at TEXT
 )""")
 
+# CLI command to list all entries
+@app.command()
+def list():
+    cur.execute("SELECT * FROM tasks")
+    results = cur.fetchall()
+    print(results)
+
 # Commit command
 con.commit()
 
 # Close connection
 con.close()
+
+# Calling app object
+if __name__ == "__database__": 
+    app()
